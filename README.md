@@ -14,3 +14,8 @@ gulp.task('build', function() {
         .pipe(gulp.dest('tpl'));
 });
 ```
+
+# vdt([options])
+
+`options.amd = true` If wrap source with `define` or not
+`options.autoReturn = true` If add `return` keyword at end or not.
