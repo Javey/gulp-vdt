@@ -1,0 +1,19 @@
+{
+  "name": "gulp-vdt",
+  "description": "a plugin of gulp for compiling vdt template",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Javey/gulp-vdt.git"
+  },
+  "author": "Javey <jiawei23716@sina.com>",
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0",
+    "vdt": "latest"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
