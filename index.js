@@ -26,6 +26,11 @@ module.exports = function(options) {
             return cb();
         }
 
+        // if is a js file return
+        if (/\.js$/.test(file.path)) {
+            return cb();
+        }
+
         var contents = Vdt.compile(file.contents.toString(), options).source;
         if (options.amd) {
             contents = 'define(function(require) {\n return ' + contents + '\n})';

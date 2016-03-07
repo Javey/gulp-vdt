@@ -6,3 +6,9 @@ gulp.task('build', function() {
         .pipe(vdt())
         .pipe(gulp.dest('tpl'));
 });
+
+gulp.task('js', function() {
+    gulp.src('tpl/**/*.js')
+        .pipe(vdt())
+        .pipe(gulp.dest('tpl'));
+});
