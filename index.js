@@ -26,7 +26,7 @@ module.exports = function(options) {
             return cb();
         }
 
-        var contents = Vdt.compile(file.contents.toString(), options.autoReturn).source;
+        var contents = Vdt.compile(file.contents.toString(), options).source;
         if (options.amd) {
             contents = 'define(function(require) {\n return ' + contents + '\n})';
         }
