@@ -10,5 +10,5 @@ gulp.task('build', function() {
 gulp.task('js', function() {
     gulp.src('tpl/**/*.js')
         .pipe(vdt())
-        .pipe(gulp.dest('tpl'));
+        .pipe(gulp.dest('js'));
 });

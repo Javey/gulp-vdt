@@ -28,6 +28,7 @@ module.exports = function(options) {
 
         // if is a js file return
         if (/\.js$/.test(file.path)) {
+            this.push(file);
             return cb();
         }
 
