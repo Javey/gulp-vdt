@@ -1,1 +1,5 @@
+import {a} from 'a';
+
+var b = require('b');
+
 <div>test</div>

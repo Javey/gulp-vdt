@@ -16,8 +16,9 @@ var hasOwn = Object.prototype.hasOwnProperty;
 
 module.exports = function(options) {
     options = extend({
-        amd: true,
-        autoReturn: true
+        format: 'amd',
+        autoReturn: true,
+        onlySource: true
     }, options);
 
     return through.obj(function(file, enc, cb) {
@@ -32,9 +33,20 @@ module.exports = function(options) {
             return cb();
         }
 
-        var contents = Vdt.compile(file.contents.toString(), options).source;
-        if (options.amd) {
+        var fn = Vdt.compile(file.contents.toString(), options);
+        var contents = fn.source;
+        var pos = contents.indexOf('\n');
+        if (options.amd === false) {
+            options.format = '';
+        }
+        if (options.format === 'amd') {
             contents = 'define(function(require) {\n return ' + contents + '\n})';
+        } else if (options.format === 'cjs') {
+            contents = [
+                fn.head || '',
+                'module.exports = ' + contents.substr(0, pos),
+                contents.substr(pos)
+            ].join('\n');
         }
 
         file.contents = new Buffer(contents);

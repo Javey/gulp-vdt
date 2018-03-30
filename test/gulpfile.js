@@ -7,6 +7,13 @@ gulp.task('build', function() {
         .pipe(gulp.dest('tpl'));
 });
 
+gulp.task('build:cjs', function() {
+    gulp.src('tpl/**/*.vdt')
+        .pipe(vdt({format: 'cjs'}))
+        .pipe(gulp.dest('tpl'));
+});
+
+
 gulp.task('js', function() {
     gulp.src('tpl/**/*.js')
         .pipe(vdt())
