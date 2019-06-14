@@ -43,12 +43,12 @@ module.exports = function(options) {
         } else if (options.format === 'cjs') {
             contents = 'module.exports = ' + contents;
             if (fn.head) {
-                contents = fn.head + contents;
+                contents = fn.head + "\n" + contents;
             }
         } else if (options.format === 'module') {
             contents = 'export default ' + contents;
             if (fn.head) {
-                contents = fn.head + contents;
+                contents = fn.head + "\n" + contents;
             }
         }
 
