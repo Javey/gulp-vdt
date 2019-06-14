@@ -35,21 +35,24 @@ module.exports = function(options) {
 
         var fn = Vdt.compile(file.contents.toString(), options);
         var contents = fn.source;
-        var pos = contents.indexOf('\n');
         if (options.amd === false) {
             options.format = '';
         }
         if (options.format === 'amd') {
             contents = 'define(function(require) {\n return ' + contents + '\n})';
         } else if (options.format === 'cjs') {
-            contents = [
-                fn.head || '',
-                'module.exports = ' + contents.substr(0, pos),
-                contents.substr(pos)
-            ].join('\n');
+            contents = 'module.exports = ' + contents;
+            if (fn.head) {
+                contents = fn.head + contents;
+            }
+        } else if (options.format === 'module') {
+            contents = 'export default ' + contents;
+            if (fn.head) {
+                contents = fn.head + contents;
+            }
         }
 
-        file.contents = new Buffer(contents);
+        file.contents = Buffer.from(contents);
         file.path = file.path.replace('.vdt', '.js');
 
         this.push(file);

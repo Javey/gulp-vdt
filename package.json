@@ -10,13 +10,14 @@
   "author": "Javey <jiawei23716@sina.com>",
   "dependencies": {
     "gulp-util": "^3.0.6",
+    "source-map": "^0.7.3",
     "through2": "^2.0.0"
   },
   "peerDependencies": {
     "vdt": "*"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "vdt": "^1.1.2-22"
   }
 }
