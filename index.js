@@ -1,6 +1,6 @@
-var through = require('through2'),
-    gutil = require('gulp-util'),
-    Vdt = require('vdt');
+const through = require('through2');
+const gutil = require('gulp-util');
+const {Parser, Visitor} = require('vdt-compiler');
 
 var hasOwn = Object.prototype.hasOwnProperty;
     extend = function(dest, source) {
@@ -16,9 +16,8 @@ var hasOwn = Object.prototype.hasOwnProperty;
 
 module.exports = function(options) {
     options = extend({
-        format: 'amd',
-        autoReturn: true,
-        onlySource: true
+        delimiters: ['{', '}'],
+        moduleName: 'intact',
     }, options);
 
     return through.obj(function(file, enc, cb) {
@@ -33,26 +32,10 @@ module.exports = function(options) {
             return cb();
         }
 
-        var fn = Vdt.compile(file.contents.toString(), options);
-        var contents = fn.source;
-        if (options.amd === false) {
-            options.format = '';
-        }
-        if (options.format === 'amd') {
-            contents = 'define(function(require) {\n return ' + contents + '\n})';
-        } else if (options.format === 'cjs') {
-            contents = 'module.exports = ' + contents;
-            if (fn.head) {
-                contents = fn.head + "\n" + contents;
-            }
-        } else if (options.format === 'module') {
-            contents = 'export default ' + contents;
-            if (fn.head) {
-                contents = fn.head + "\n" + contents;
-            }
-        }
+        const parser = new Parser(file.contents.toString(), {delimiters: options.delimiters});
+        const visitor = new Visitor(parser.ast);
 
-        file.contents = Buffer.from(contents);
+        file.contents = Buffer.from(visitor.getModuleCode(options.moduleName));
         file.path = file.path.replace('.vdt', '.js');
 
         this.push(file);

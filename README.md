@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     vdt = require('gulp-vdt');
 
 gulp.task('build', function() {
-    gulp.src('tpl/**/*.vdt')
+    return gulp.src('tpl/**/*.vdt')
         .pipe(vdt())
         .pipe(gulp.dest('tpl'));
 });
@@ -17,5 +17,5 @@ gulp.task('build', function() {
 
 # vdt([options])
 
-* `options.amd = true` If wrap source with `define` or not
-* `options.autoReturn = true` If add `return` keyword at end or not.
+* `options.delimiters = ['{', '}']` Sepcify the delimiters of vdt.
+* `options.moduleName = 'intact'` Sepcify the module that imports helpers from

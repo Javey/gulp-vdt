@@ -14,10 +14,10 @@
     "through2": "^2.0.0"
   },
   "peerDependencies": {
-    "vdt": "*"
+    "vdt-compiler": "*"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
-    "vdt": "^1.1.2-22"
+    "vdt-compiler": "^3.0.0-beta.3"
   }
 }

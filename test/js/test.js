@@ -1,20 +1,15 @@
-define(function(require) {
- return function(obj, _Vdt, blocks) {
-_Vdt || (_Vdt = Vdt);
-blocks || (blocks = {});
-var h = _Vdt.virtualDom.h, widgets = this.widgets || {}, _blocks = {}, __blocks = {},
-hasOwn = Object.prototype.hasOwnProperty,
-extend = function(dest, source) {
-if (source) {
-for (var key in source) {
-if (hasOwn.call(source, key)) {dest[key] = source[key];}
-}
-}
-return dest;
+import {
+    createElementVNode as _$ce,
+} from 'intact';
+import {a} from 'a';
+
+
+export default function($props, $blocks, $__proto__) {
+    $blocks || ($blocks = {});
+    $props || ($props = {});
+    var $this = this;
+    
+    var b = require('b');
+    
+    return _$ce(2, 'div', 'test', 16 /* HasTextChildren */);
 };
-extend(__blocks, blocks);
-with (obj || {}) {
-return h('div',null, ['test'])
-}
-}
-})
